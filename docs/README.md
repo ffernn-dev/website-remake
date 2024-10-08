@@ -58,8 +58,9 @@ This screen capture shows how the final PWA will be rendered to the user.
 | ------ | ------ |
 | [McCarter.start-git-bash](https://marketplace.visualstudio.com/items?itemName=McCarter.start-git-bash) | [ecmel.vscode-html-css](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css) |
 | [alexcvzz.vscode-sqlite](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite) | [ms-vscode.js-debug](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug) |
-| [medo64.render-crlf](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf) | [esbenp.prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) |
+| [medo64.render-crlf](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf) | [dbaeumer.vscode-eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) |
 | | [oderwat.indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow) |
+| | [miramac.vscode-exec-node](https://marketplace.visualstudio.com/items?itemName=miramac.vscode-exec-node) |
 | | [yy0931.vscode-sqlite3-editor](https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor) |
 
 2. Open a GIT BASH terminal
@@ -400,7 +401,7 @@ Express is a light weight webserver designed specifically for Node.js web applic
     app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
     });
-    app.listen(80, () => console.log("Server is running on Port 80, visit http://localhost:80/ or http://127.0.0.1:80 to access your website") );
+    app.listen(5000, () => console.log("Server is running on Port 5000, visit http://localhost:5000/ or http://127.0.0.1:5000 to access your website") );
 ```
 
 2. Run the built-in webserver.
