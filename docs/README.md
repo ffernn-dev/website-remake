@@ -1,6 +1,6 @@
 # INTRODUCTION TO FLASK AND PROGRESSIVE WEB APPS TUTORIAL
 
-This guided tutorial will introduce HSC Software Engineering to the basics of developing websites with the [Node.js](https://nodejs.org/en). The tutorial has been specifically designed for requirements in the [NESA Software Engineering Syllabus](https://curriculum.nsw.edu.au/learning-areas/tas/software-engineering-11-12-2022/content/n12/fa6aab137e) and for students in NSW Department of Education schools using eT4L computers.
+This guided tutorial will introduce HSC Software Engineering to the basics of developing websites with the [node.JS framework](https://nodejs.org/en). The tutorial has been specifically designed for requirements in the [NESA Software Engineering Syllabus](https://curriculum.nsw.edu.au/learning-areas/tas/software-engineering-11-12-2022/content/n12/fa6aab137e) and students in NSW Department of Education schools using eT4L computers.
 
 A [list of popular PWA's](https://business.adobe.com/blog/basics/progressive-web-app-examples) (including Ube, Spotify, Facebook and Google Maps)
 
@@ -10,22 +10,22 @@ A [Progressive Web Apps (PWAs)](https://developer.mozilla.org/en-US/docs/Web/Pro
 
 ### Technical features of PWAs
 
-Because PWAs are websites, they have the same basic features as any other website: at least one HTML page, which loads CSS and JavaScript. Javascript is the language of the web and is exclusivly used for client side front end, python in the web context can only be used in the back end. Like a normal website, the JavaScript loaded by the page has a global Window object and can access all the Web APIs that are available through that object. The PWA standard as defined by [W3C Standards](https://www.w3.org/standards/) has some specific features additonal to a website:
+Because PWAs are websites, they have the same basic features as any other website: at least one HTML page, which loads CSS and JavaScript. Javascript is the language of the web and is exclusively used for the client-side front end; python, in the web context, can only be used in the back end. Like a normal website, the JavaScript loaded by the page has a global Window object and can access all the Web APIs that are available through that object. The PWA standard as defined by [W3C Standards](https://www.w3.org/standards/) has some specific features additional to a website:
 
 | Feature | Purpose |
 | ------ | ------- |
-| manifest.json | A app manifest file, which, at a minimum, provides information that the operating system needs to install the PWA, such as the app name, screen orientation and icon set for different sized viewports. |
-| serviceworker.js | A service worker, which, at a minimum, manages the caching that enables a online and offline experience whilst also interfacing with API's such as the [notification web API](https://developer.mozilla.org/en-US/docs/Web/API/Notification). It's important to udnerstand that this JS file cannot control the DOM of the application. |
-| icons & screanshots | A set of icons and screenshots that are used in when uploading to an app store and when installing it as a native application. It is these icons that will be used in the desktop or app launcher when installed. |
+| manifest.json | An app manifest file, which, at a minimum, provides information that the operating system needs to install the PWA, such as the app name, screen orientation and icon set for different-sized viewports. |
+| serviceworker.js | A service worker, which, at a minimum, manages the caching that enables an online and offline experience whilst also interfacing with API's such as the [notification web API](https://developer.mozilla.org/en-US/docs/Web/API/Notification). It's important to udnerstand that this JS file cannot control the DOM of the application. |
+| Icons & screenshots | A set of icons and screenshots that are used when uploading to an app store and when installing it as a native application. It is these icons that will be used in the desktop or app launcher when installed. |
 | Installable | Because of the information contained in the manifest.json all PWA's can be installed like a native app. They can also be packaged and uploaded to the Google, Microsoft & Apple app stores. |
-| Cached locally | Because the service worker details all apps and pages to be cached (all pages must have a *.html name) the app and it's resources can be cached locally for quick load times. _Note backend apps where the web server serves all pages from the DNS root do not meet the PWA specification._ |
+| Cached locally | Because the service worker details all apps and pages to be cached (all pages must have a *.html name), the app and its resources can be cached locally for quick load times. _Note backend apps where the web server serves all pages from the DNS root do not meet the PWA specification._ |
 
 The below image illustrates how the servicework manages online and offline behaviour.
 
 ![A highlevel illustration of the service worker](/docs/README_resources/Progressive-Web-Apps-Architecture.png "The service worker handles the initial requests and sets the behaviour depending on if the app is on or offline.")
 
 ## Your end product
-This screen capture shows how the final PWA will render to the user.
+This screen capture shows how the final PWA will be rendered to the user.
 
 ![Screen capture of the finished PWA](/docs/README_resources/final_app.png "This is what your application will look like")
 
@@ -43,31 +43,44 @@ This screen capture shows how the final PWA will render to the user.
 4. CSS Basics
 5. Python
 
-## Open a GIT BASH terminal
+## STEPS TO BUILDING YOUR FIRST PWA
+
+### Setup your environment
+
+![Screen recording of setting up VSCode](/docs/README_resources/get_vscode_started.gif "Follow these steps to setup VSCode")
 
 > [!NOTE]
-> From here in, you should aim to run all commands from the CLI. You are discouraged from left/right clicking the GUI. You will find it feels slow at first but through disciplined use, you will become much quicker and more accurate with CLI commands than GUI controls.
+> Helpful VSCode settings are configured in [.vscode/settings.json](/.vscode/settings.json), which will automatically apply if you are not using a custom profile. If you are using a custom profile, it is suggested you manually apply those settings to your profile, especially the \*.md file association, so the README.md default opens in preview mode and setting _bash_ as your default terminal.
+
+1. Install the necessary extensions for this tutorial.
+
+| Required Extensions | Suggested nodeJS Extensions |
+| ------ | ------ |
+| [ms-python.python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) | [miramac.vscode-exec-node](https://marketplace.visualstudio.com/items?itemName=miramac.vscode-exec-node) |
+| [McCarter.start-git-bash](https://marketplace.visualstudio.com/items?itemName=McCarter.start-git-bash) | [ecmel.vscode-html-css](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css) |
+| [alexcvzz.vscode-sqlite](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite) | [ms-vscode.js-debug](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug) |
+| [medo64.render-crlf](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf) | [oderwat.indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow) |
+
+2. Open a GIT BASH terminal
+
+> [!NOTE]
+> From now on, you should aim to run all commands from the CLI. You are discouraged from left/right clicking the GUI. You will find it feels slow at first, but through disciplined use, you will become much quicker and more accurate with CLI commands than GUI controls.
 
 Make sure you open a new terminal with the keys <kbd>Ctrl</kbd> + <kbd>`</kbd> and choose Git Bash from the menu option in the top right of the terminal shell.
 
 ![Screen capture of the menu options for terminals](/docs/README_resources/git_bash_shell.png "Choose Git Bash from the list")
 
-## STEPS TO BUILDING YOUR FIRST PWA
-
-### Setup your environment
-
-1. Common VScode settings are set in .vscode/settings.json and default plugins are in .devcontainer/devcontainer.json (devcontainer assumes you have the [Docker extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) installed.). Those with VSCode experience should adjust any settings to their preferences.
-
-2. Get the working files which includes this README.md
+3. Get the working files, which include this README.md
     - Open a new window in VSCode
     - Choose your working directory
+
     - ```bash
         git clone https://github.com/TempeHS/NodeJS_PWA_Programming_For_The_Web_Task_Template.git
         cd NodeJS_PWA_Programming_For_The_Web_Task_Template
       ```
 
 > [!TIP]
-> Alternatively you can fork the [template repository](https://github.com/TempeHS/NodeJS_PWA_Programming_For_The_Web_Task_Template) to your own GitHub account and open it in a Codespace in which all dependencis and extensions will be automatically installed.
+> Alternatively, you can fork the [template repository](https://github.com/TempeHS/NodeJS_PWA_Programming_For_The_Web_Task_Template) to your own GitHub account and open it in a Codespace in which all dependencies and extensions will be automatically installed.
 
 1. Inititalise a node application
 
@@ -75,21 +88,12 @@ Make sure you open a new terminal with the keys <kbd>Ctrl</kbd> + <kbd>`</kbd> a
     npm init -y
 ```
 
-2. Install necessary depenencies.
+5. Install necessary dependencies.
 
 ```bash
     npm install sqlite3
     npm install express
 ```
-
-3. Install specically required extensions for this tutorial.
-   - [ms-vscode.js-debug-nightly](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly)
-   - [McCarter.start-git-bash](https://marketplace.visualstudio.com/items?itemName=McCarter.start-git-bash)
-   - [alexcvzz.vscode-sqlite](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite)
-   - [medo64.render-crlf](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf)
-
-> [!TIP]
-> Other extensions such as rainbow indentor and linting tools are also recommended to improve your IDE experience with VSCode.
 
 ---
 
@@ -108,7 +112,8 @@ Make sure you open a new terminal with the keys <kbd>Ctrl</kbd> + <kbd>`</kbd> a
     code LICENSE
 ```
 
-Copy the [GNU GPL license](https://www.gnu.org/licenses/gpl-3.0.txt) text into the file. GNU GPL is a free software license, or copyleft license, that guarantee end users the freedoms to run, study, share, and modify the software.
+Copy the [GNU GPL license](https://www.gnu.org/licenses/gpl-3.0.txt) text into the file. GNU GPL is a free software license, or copyleft license, that guarantees end users the freedom to run, study, share, and modify the software.
+
 3. Create your directory structure and some base files using BASH scripts reading text files.
 
 ```text
@@ -127,7 +132,7 @@ Copy the [GNU GPL license](https://www.gnu.org/licenses/gpl-3.0.txt) text into t
     └── index.js
 ```
 
-3. Populate a text file with a list of folders you need in the public of your project. All contents of the public folder will be served by the webserver. This folder is the 'FRONT END' while all folders behind it are the 'BACK END'.
+4. Create a text file with a list of folders you need in the public folder of your project. The web server will serve the contents of the public folder. This folder is the 'FRONT END,' while all folders behind it are the 'BACK END.'
 
 ```bash
     mkdir public
@@ -145,7 +150,7 @@ Copy the [GNU GPL license](https://www.gnu.org/licenses/gpl-3.0.txt) text into t
     done < folders.txt
 ```
 
-5. Populate the file with a list of files you need in the root of your project.
+5. Populate the file with a list of files you need at the root of your project.
 
 ```bash
     touch files.txt
@@ -163,8 +168,8 @@ Copy the [GNU GPL license](https://www.gnu.org/licenses/gpl-3.0.txt) text into t
 
 > [!IMPORTANT]
 >
-> - The last list item needs a line ending so make sure there is a blank last line in the file.
-> - You will find that all file and folder names have an unwanted `space` character at the end. This is because you are using a BASH emulator on Windows operating system. Bash is a Unix language that uses [LF the unicode character 000A while Windows uses CRLF the Unicode characters 000D + 000A](https://learn.microsoft.com/en-us/visualstudio/ide/encodings-and-line-breaks?view=vs-2022). Because you have installed the [medo64.render-crlf](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf) extension just click on `CRLF` in the bottom bar of VSCode and choose `LF` to change the line ending before running your BASH script.
+>—The last list item needs a line ending, so make sure the last line in the file is blank.
+> - You will find that all file and folder names have an unwanted `space` character at the end. This is because you are using a BASH emulator on the Windows operating system. Bash is a Unix language that uses [LF Unicode character 000A while Windows uses CRLF Unicode characters 000D and 000A](https://learn.microsoft.com/en-us/visualstudio/ide/encodings-and-line-breaks?view=vs-2022). Because you have installed the [medo64.render-crlf](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf) extension, click on `CRLF` in the bottom bar of VSCode and choose `LF` to change the line ending before running your BASH script.
 
 ---
 
@@ -180,15 +185,15 @@ Copy the [GNU GPL license](https://www.gnu.org/licenses/gpl-3.0.txt) text into t
 ```
 
 > [!NOTE]
-> The following SQL queries are provided as an example only, students are encouraged to select their own content and design a database schema for it, ideas include:
+> The following SQL queries are provided as an example only. Students are encouraged to select their content and design a database schema for it; ideas include:
 >
-> - Favourate bands
-> - Favourate movies
-> - Favourate games
-> - Favourate books
+> - Favourite bands
+> - Favourite movies
+> - Favourite games
+> - Favourite books
 > - etc
 
-1. Run SQL queries to setup your database table. When asked choose the database.db.
+1. Run SQL queries to set up your database table. When asked choose the database.db.
 
 ```sql
     CREATE TABLE extension(extID INTERGER NOT NULL PRIMARY KEY,name TEXT NOT NULL, hyperlink TEXT NOT NULL,about TEXT NOT NULL,image TEXT NOT NULL,language TEXT NOT NULL);
@@ -228,7 +233,7 @@ Copy the [GNU GPL license](https://www.gnu.org/licenses/gpl-3.0.txt) text into t
 2. Design simplified app icon 512px X 512px names favicon.png.
 3. Web optimise the images using [TinyPNG](https://tinypng.com/).
 4. Save the files into the public/images folder.
-5. Rename the 512x512 icon to icon-512x512.png then resize and rename it as follows:
+5. Rename the 512x512 icon to icon-512x512.png, then resize and rename it as follows:
    - icon-128x128.png
    - icon-192x192.png
    - icon-384x384.png
@@ -251,7 +256,7 @@ Copy the [GNU GPL license](https://www.gnu.org/licenses/gpl-3.0.txt) text into t
     code layout.html
 ```
 
-5. Insert the basic HTML struture in your index.html file.
+5. Insert the basic HTML structure in your index.html file.
 
 ```html
     <!DOCTYPE html>
@@ -397,26 +402,26 @@ Express is a light weight webserver designed specifically for Node.js web applic
     app.listen(80, () => console.log("Server is running on Port 80, visit http://localhost:80/ or http://127.0.0.1:80 to access your website") );
 ```
 
-2. Run the builtin webserver.
+2. Run the built-in webserver.
 
 ```bash
     node index.js
 ```
 
-3. Visit your website and look at the souce in developer tools to see how the page has rendered.
+3. Visit your website and look at the source in developer tools to see how the page has been rendered.
 
 ---
 
 ### Query your SQL database and migrate the data for the frontend
 
 >[!NOTE]
-> From here students have two choices, they can use their existing Python skills or new JS skills. Either way students will be querying a table in data_source.db and then constructing a JSON file that will be pushed to the frontend ready for rending by a frontend JS script.
-> If you choose the JS method, you may want to refer to the Python method in the future as a helpful way to have more complex Python programs in the backend and create a simple responsive GUI using HTML/CSS/JS.
+> From here students have two choices, they can use their existing Python skills or new JS skills. Either way, students will be querying a table in data_source.db and then constructing a JSON file that will be pushed to the frontend, ready for rending by a frontend JS script.
+> If you choose the JS method, you should refer to the Python method in the future as a helpful way to have more complex Python programs in the backend and create a simple responsive GUI using HTML/CSS/JS.
 
 #### Why JSON?
 [JSON (JavaScript Object Notation)](https://www.json.org/json-en.html) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. It is also very secure and the worflow used in this application ensures data integrity of the backend.
 
-### Choose your backend implementaion language:
+### Choose your backend implementation language:
 
 <details>
     <summary><h3 style="display:inline">I want to use Python</h3></summary>
@@ -456,7 +461,7 @@ Express is a light weight webserver designed specifically for Node.js web applic
     ```
 
 >[!NOTE]
-> This approach is different from the Pythonic way to generate a JSON file. Because this approach is about algorithm design, it models how an algorithm can easily migrate data from one format/structure to another. If you know the Pythonic way feel free to implement it. However, software engineers should understand and be able to replicate data migration algoriythms.
+> This approach is different from the Pythonic way to generate a JSON file. Because this approach is about algorithm design, it models how an algorithm can easily migrate data from one format/structure to another. If you know the Pythonic way, feel free to implement it. However, software engineers should understand and be able to replicate data migration algorithms.
 
     ```bash
     code index.js
@@ -534,7 +539,7 @@ Express is a light weight webserver designed specifically for Node.js web applic
     code app.js
     ```
 
-1. Insert the js into public/js/app.js, this js reads the JSON file and inserts it as HTML into the .container class `<DIV>`.
+1. Insert the js into public/js/app.js; this JS reads the JSON file and inserts it as HTML into the .container class `<DIV>`.
     ```js
     let result = "";
     fetch('./frontEndData.json')
@@ -637,16 +642,16 @@ Express is a light weight webserver designed specifically for Node.js web applic
 
 ---
 
-### Finish the PWA code so it is compliant to W3 web standards
+### Finish the PWA code, so it is compliant with W3 web standards
 
-1. Take a screen shot of the website. Then size the image to 1080px X 1920px, web optimise the images using [TinyPNG](https://tinypng.com/) and save it to public/icons.
+1. Take a screenshot of the website. Then size the image to 1080px X 1920px, web optimise the images using [TinyPNG](https://tinypng.com/) and save it to public/icons.
 
 ```bash
     cd ..
     code manifest.json
 ```
 
-2. Configure the manifest.json to the PWA standard by inserting the json below and validating the json with [jsonlint](https://jsonlint.com/). The manifest.json sets the configuration for the installtion and caching of the PWA.
+2. Configure the manifest.json to the PWA standard by inserting the JSON below and validating the JSON with [jsonlint](https://jsonlint.com/). The manifest.json sets the configuration for the installation and caching of the PWA.
 
 ```json
     {
@@ -730,7 +735,7 @@ Express is a light weight webserver designed specifically for Node.js web applic
     code ap.js
 ```
 
-2. Configure the app.js to initiate the servicework.js ny inserting the JS. This ensures that when the window (app) loads that the serviceworker.js is called to memory.
+2. Configure the app.js to initiate the servicework.js ny inserting the JS. This ensures that when the window (app) loads, the serviceworker.js is called to memory.
 
 ```js
     if ("serviceWorker" in navigator) {
@@ -748,7 +753,7 @@ Express is a light weight webserver designed specifically for Node.js web applic
     code serviceworker.js
 ```
 
-1. Configure the serviceworker.js by inserting the JS. The servicworker.js as the same suggest is the file that does all the work in a PWA including cacheing and API intergration for the [WEB API's](https://developer.mozilla.org/en-US/docs/Web/API).
+1. Configure the serviceworker.js by inserting the JS. The serviceworker.js, as the name suggests, is the file that does all the work in a PWA, including caching and API integration for the [WEB APIs](https://developer.mozilla.org/en-US/docs/Web/API).
 
 ```js
 const assets = [
@@ -815,21 +820,21 @@ const assets = [
 
 ### Validate your PWA
 Validation is important to ensure the app is compliant to [W3 web standards](https://www.w3.org/standards/).
-1. Open your website in Chrome and open developer tools (F12), run a Lighthouse report.
-![Screen cpature of Chrome Lighthouse report](/docs/README_resources/Chrome_Lighthouse_Report.png "Click F12 and choose Lighthouse on the top menu of your developer tools").
-2. Open your website in Edge and open developer tools (F12), look at the application report.
-![Screen cpature of Chrome Lighthouse report](/docs/README_resources/Edge_Application_Report.png "Click F12 and choose Lighthouse on the top menu of your developer tools").
+1. Open your website in Chrome, open developer tools (F12), and run a Lighthouse report.
+![Screen capture of Chrome Lighthouse report](/docs/README_resources/Chrome_Lighthouse_Report.png "Click F12 and choose Lighthouse on the top menu of your developer tools").
+2. Open your website in Edge, open developer tools (F12), and look at the application report.
+![Screen capture of Chrome Lighthouse report](/docs/README_resources/Edge_Application_Report.png "Click F12 and choose Lighthouse on the top menu of your developer tools").
 
 ---
 
 ### Take your app further
-The following code snippets will help you create a simple form in the add.html page. This form is for people to add their details to an email database for updates on your catalogue. Less explict instructions have been provided, students are encouraged to practice their BASH, SQL, HTML, CSS & JS to bring it all together. The screen shot below is what the page should like like and when users submit the database is updated.
+The following code snippets will help you create a simple form on the add.html page. This form allows people to add their details to an email database for updates on your catalogue. Less explicit instructions have been provided; students are encouraged to practice their BASH, SQL, HTML, CSS, and JS to bring it all together. The screenshot below shows what the page should look like, and when users submit, the database is updated.
 
 ![Screen capture of the finished PWA](/docs/README_resources/form_example.png "This is what your application will look like").
 
 1. Page specifications:
     - Simple form where the user inserts their name and email address
-    - When they click submit the data base is updated
+    - When they click submit the database is updated
     - The input form must be styled to be consistent with the rest of the website
     - A message confirming submission is returned to the user
 2. SQL schema specifications:
@@ -840,7 +845,7 @@ The following code snippets will help you create a simple form in the add.html p
       - name
 
 > [!NOTE]
-> You will need to catch the expection of a duplicate email
+> You will need to catch the expectation of a duplicate email
 
 ```bash
     npm npm install body-parser
