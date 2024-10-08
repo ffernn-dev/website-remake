@@ -18,21 +18,27 @@
 				"editor.formatOnPaste": true,
 				"editor.formatOnSave": true,
 				"editor.defaultFormatter": "vscode.html-language-features",
-				"editor.fontSize": 18
+				"editor.fontSize": 18,
+				"terminal.integrated.defaultProfile.windows": "Git Bash",
+				"window.restoreWindows": "preserve",
+				"workbench.editorAssociations": {
+        			"*.md": "vscode.markdown.preview.editor"
+    			}
 			},
 			"extensions": [
 				"yy0931.vscode-sqlite3-editor",
-				"alexcvzz.vscode-sqlite",
-				"McCarter.start-git-bash",
-				"medo64.render-crlf",
-				"oderwat.indent-rainbow",
 				"ecmel.vscode-html-css",
 				"miramac.vscode-exec-node",
+				"McCarter.start-git-bash",
 				"ms-vscode.js-debug",
 				"dbaeumer.vscode-eslint",
+				"alexcvzz.vscode-sqlite",
+				"oderwat.indent-rainbow",
 				"ms-vscode-remote.remote-containers",
 				"ms-vscode-remote.remote-wsl",
 				"GitHub.codespaces",
+				"miramac.vscode-exec-node",
+				"McCarter.start-git-bash",
 				"ms-vscode-remote.remote-wsl",
 				"ms-azuretools.vscode-docker"
 			]
