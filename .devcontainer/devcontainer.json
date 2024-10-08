@@ -6,7 +6,7 @@
 	},
 	"waitFor": "onCreateCommand",
 	"updateContentCommand": "npm install",
-	postCreateCommand": "",
+	"postCreateCommand": "",
 	"postAttachCommand": {
     "server": "npm update",
     "server": "npm start"
