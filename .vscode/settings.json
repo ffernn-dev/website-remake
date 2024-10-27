@@ -4,7 +4,7 @@
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"[python]": {
-    	"editor.defaultFormatter": "ms-python.black-formatter"
+    		"editor.defaultFormatter": "ms-python.black-formatter"
 	},
 	"editor.fontSize": 18,
 	"terminal.integrated.defaultProfile.windows": "Git Bash",
