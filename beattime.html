@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Beat Time</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body class="bg-gray-50 text-gray-600 font-mono !block" style="display: none">
+    <div class="w-full min-h-screen flex">
+      <header class="m-auto w-full max-w-md">
+        <h1
+          class="text-[calc(6vw)] flex items-center justify-center"
+          title="Beat: Swatch Internet Time"
+        >
+          <sup class="text-red-400/50">@</sup>
+          <b class="beats font-thin tracking-tighter">&nbsp;</b>
+        </h1>
+      </header>
+    </div>
+
+    <script type="module">
+      import "https://esm.run/iconify-icon";
+      import { install, injectGlobal } from "https://esm.run/@twind/core";
+      import presetAutoprefix from "https://esm.run/@twind/preset-autoprefix";
+      import presetTailwind from "https://esm.run/@twind/preset-tailwind";
+
+      // twind
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        hash: false,
+      });
+
+      // beat
+      beatTime();
+      setInterval(beatTime, 1);
+
+      function beatTime() {
+        const date = new Date();
+        const hours = date.getUTCHours() == 23 ? 0 : date.getUTCHours() + 1;
+        const beats = Math.abs(
+          ((hours * 60 + date.getUTCMinutes()) * 60 + date.getUTCSeconds()) /
+            86.4
+        ).toFixed(2);
+        document.querySelectorAll(".beats").forEach(function (item) {
+          item.innerHTML = beats;
+        });
+      }
+    </script>
+  </body>
+</html>

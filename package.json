@@ -1,18 +1,35 @@
 {
-  "name": "programming_for_the_web_task_template",
+  "name": "milo_portfolio",
   "version": "1.0.0",
   "description": "A template for the demo Node.JS Progressive Web Application with a SQLite backend.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "Ben Jones",
-  "license": "CC-BY-NC-SA-4.0",
+  "author": "ffernn",
+  "license": "MIT",
   "dependencies": {
+    "better-sqlite3": "^11.5.0",
+    "blurhash": "^2.0.5",
     "body-parser": "^1.20.3",
-    "express": "^4.18.2",
-    "sqlite3": "^5.1.6"
+    "csv-writer": "^1.6.0",
+    "express": "^4.21.1",
+    "front-matter": "^4.0.2",
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7",
+    "rehype-stringify": "^10.0.1",
+    "remark": "^15.0.1",
+    "remark-callout": "^1.1.1",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-obsidian": "^1.8.0",
+    "remark-rehype": "^11.1.1",
+    "sharp": "^0.33.5"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
