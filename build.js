@@ -8,11 +8,10 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import remarkCallout from "remark-callout";
 import fm from "front-matter";
-import { createObjectCsvWriter } from "csv-writer";
 import Database from "better-sqlite3";
 import sharp from "sharp";
 import { customAlphabet } from "nanoid";
-import { encode, isBlurhashValid } from "blurhash";
+import { rgbaToThumbHash } from "thumbhash";
 
 const __dirname = import.meta.dirname;
 const markdownDir = path.join(__dirname, "markdown");
@@ -112,35 +111,28 @@ async function processImage(file) {
     const id = nanoid();
 
     try {
-      const buffer = await img.raw().ensureAlpha().toBuffer();
-      const blurhash = encode(
-        new Uint8ClampedArray(buffer),
-        width,
-        height,
-        9,
-        6
+      let buffer = img.clone().raw().ensureAlpha();
+      if (width > height) {
+        buffer = buffer.resize({ width: 100 });
+      } else {
+        buffer = buffer.resize({ height: 100 });
+      }
+      buffer = await buffer.toBuffer({ resolveWithObject: true });
+      const blurhash = rgbaToThumbHash(
+        buffer.info.width,
+        buffer.info.height,
+        new Uint8Array(buffer.data)
       );
 
-      if (isBlurhashValid(blurhash)) {
-        db.prepare(
-          "INSERT INTO assets (asset_id, original_name, blurhash, width, height) VALUES (@id, @name, @hash, @w, @h)"
-        ).run({
-          id: id,
-          name: file,
-          hash: blurhash,
-          w: width,
-          h: height,
-        });
-      } else {
-        db.prepare(
-          "INSERT INTO assets (asset_id, original_name, width, height) VALUES (@id, @name, @w, @h)"
-        ).run({
-          id: id,
-          name: file,
-          w: width,
-          h: height,
-        });
-      }
+      db.prepare(
+        "INSERT INTO assets (asset_id, original_name, blurhash, width, height) VALUES (@id, @name, @hash, @w, @h)"
+      ).run({
+        id: id,
+        name: file,
+        hash: blurhash,
+        w: width,
+        h: height,
+      });
     } catch (err) {
       console.error("Error processing image", err);
     }
