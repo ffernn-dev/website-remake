@@ -11,28 +11,23 @@ import fm from "front-matter";
 import { createObjectCsvWriter } from "csv-writer";
 import Database from "better-sqlite3";
 import sharp from "sharp";
+import { customAlphabet } from "nanoid";
 import { encode, isBlurhashValid } from "blurhash";
 
 const __dirname = import.meta.dirname;
 const markdownDir = path.join(__dirname, "markdown");
 const assetsDir = path.join(markdownDir, "_assets");
-const buildDir = path.join(__dirname, "build");
+const postsDir = path.join(__dirname, "public", "posts");
+const imagesDir = path.join(__dirname, "public", "images");
 
-let blurHashes = {};
+const alphabet =
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+const nanoid = customAlphabet(alphabet, 8);
 
-fsExtra.ensureDirSync(buildDir);
+fsExtra.ensureDirSync(postsDir);
 
 const csvFilePath = path.join(__dirname, "data.csv");
-const db = new Database(".database/data.db", { verbose: console.log });
-const writer = createObjectCsvWriter({
-  path: csvFilePath,
-  header: [
-    { id: "name", title: "name" },
-    { id: "created", title: "created" },
-    { id: "tags", title: "tags" },
-    { id: "banner", title: "banner" },
-  ],
-});
+const db = new Database(".database/data.db");
 
 // Function to process each Markdown file
 async function processMarkdownFile(file) {
@@ -45,14 +40,6 @@ async function processMarkdownFile(file) {
   content.attributes.tags.forEach((tagName) => {
     createTag(tagName);
   });
-  // writer.writeRecords([
-  //   {
-  //     name: filename,
-  //     created: content.attributes.created.toISOString().split("T")[0],
-  //     tags: content.attributes.tags,
-  //     banner: content.attributes.banner,
-  //   },
-  // ]);
 
   const out = await unified()
     .use(remarkParse)
@@ -62,12 +49,20 @@ async function processMarkdownFile(file) {
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content.body);
 
-  const outputHtmlPath = path.join(buildDir, `${filename}.html`);
+  const outputHtmlPath = path.join(postsDir, `${filename}.html`);
   await writeFile(outputHtmlPath, out.toString());
+
+  const attr = content.attributes;
+  createPost({
+    name: attr.name,
+    created: attr.created.toISOString().slice(0, 10),
+    banner: attr.banner ? attr.banner.replace(/\[\[(.*?)\]\]/, "$1") : null,
+    tags: attr.tags,
+  });
 }
 
 function createTag(name) {
-  const row = db.prepare("SELECT id FROM tags WHERE name = ?").get(name);
+  const row = db.prepare("SELECT tag_id FROM tags WHERE name = ?").get(name);
   if (!row) {
     // Only insert the tag if it doesn't already exist
     db.prepare("INSERT INTO tags (name) VALUES (?)").run(name);
@@ -80,30 +75,79 @@ function createPost(post) {
     .get(post.name);
 
   if (!row) {
-    db.prepare("INSERT INTO TAGS (@name, @created, @banner, @blurhash)");
+    // TODO: Also compare hashed contents here to allow for edits to files
+    const banner_image_id = db
+      .prepare("SELECT asset_id FROM assets WHERE original_name = ?")
+      .pluck()
+      .get(post.banner);
+
+    console.log(post.name);
+    db.prepare(
+      "INSERT INTO posts (name, created, banner_image) VALUES (@name, @created, @banner)"
+    ).run({ name: post.name, created: post.created, banner: banner_image_id });
+
+    // TODO: This is janky and I should change it once I finish the assessment task and migrate to bun + an ORM
+    const placeholders = post.tags.map((_, i) => `@tag${i}`).join(",");
+    const statement = db.prepare(
+      `INSERT INTO post_tags (post_id, tag_id) SELECT (SELECT post_id FROM posts WHERE name = @name), tag_id FROM tags WHERE name IN (${placeholders});`
+    );
+    const params = { name: post.name };
+    post.tags.forEach((tag, i) => {
+      params[`tag${i}`] = tag;
+    });
+    const rows = statement.run(params);
+    console.log(rows);
   }
 }
 
 async function processImage(file) {
-  const filePath = path.join(assetsDir, file);
-  const img = sharp(filePath);
-  const { width, height } = await img.metadata();
+  const row = db
+    .prepare("SELECT original_name FROM assets WHERE original_name = ?")
+    .get(file);
 
-  try {
-    const buffer = await img.raw().ensureAlpha().toBuffer();
-    const blurhash = encode(new Uint8ClampedArray(buffer), width, height, 6, 6);
+  if (!row) {
+    const filePath = path.join(assetsDir, file);
+    const img = sharp(filePath);
+    const { width, height } = await img.metadata();
+    const id = nanoid();
 
-    if (isBlurhashValid(blurhash)) {
-      console.log(blurhash);
-      blurHashes[file] = blurhash;
-    } else {
-      console.error("Blurhashing failed");
-      blurHashes[file] = 0;
+    try {
+      const buffer = await img.raw().ensureAlpha().toBuffer();
+      const blurhash = encode(
+        new Uint8ClampedArray(buffer),
+        width,
+        height,
+        9,
+        6
+      );
+
+      if (isBlurhashValid(blurhash)) {
+        db.prepare(
+          "INSERT INTO assets (asset_id, original_name, blurhash, width, height) VALUES (@id, @name, @hash, @w, @h)"
+        ).run({
+          id: id,
+          name: file,
+          hash: blurhash,
+          w: width,
+          h: height,
+        });
+      } else {
+        db.prepare(
+          "INSERT INTO assets (asset_id, original_name, width, height) VALUES (@id, @name, @w, @h)"
+        ).run({
+          id: id,
+          name: file,
+          w: width,
+          h: height,
+        });
+      }
+    } catch (err) {
+      console.error("Error processing image", err);
     }
-  } catch (err) {
-    console.error("Error processing image", err);
+
+    const outputFile = path.join(imagesDir, `${id}.png`);
+    img.png({ compressionLevel: 8 }).toFile(outputFile);
   }
-  //sharp(file).png({ compressionLevel: 4 });
 }
 
 async function processAssets() {
@@ -140,5 +184,4 @@ async function processFiles() {
 
 // Run the script
 await processAssets();
-console.log(blurHashes);
 processFiles();
