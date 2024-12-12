@@ -25,3 +25,8 @@ banner: "[[{name of image file in _assets folder}]]"
 Add whatever markdown content you want under the frontmatter.
 Build your new content
 `npm run build`
+## Locations of key features
+### JavaScript algorithm that converts an SQL query
+into a JSON file and sends it to the front end:  
+Querying posts based on tags and search string [index.js, app.get("/api/projects" (...))[https://github.com/ffernn-dev/website-remake/blob/17ded9fa9e0f4e3380f2dfdb9fdc995792b0c305/index.js#L43]
+Sending list of tags [index.js, app.get("/api/tags" (...))[https://github.com/ffernn-dev/website-remake/blob/17ded9fa9e0f4e3380f2dfdb9fdc995792b0c305/index.js#L120C1-L120C20]
