@@ -1,0 +1,11 @@
+{
+  "templater-obsidian:Templates/Frontmatter.md": [
+    {
+      "modifiers": [
+        "Ctrl",
+        "Shift"
+      ],
+      "key": "Enter"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.dashboard .inline-title {
+    display: none !important;
+}
+
+.heatmap-calendar-boxes {
+	background: #1e1e1e;
+ 	margin-block-start: 0;
+    margin-block-end: 0;
+    padding-block-start: var(--p-spacing);
+    padding-block-end: var(--p-spacing);
+	background-clip: padding-box;
+}

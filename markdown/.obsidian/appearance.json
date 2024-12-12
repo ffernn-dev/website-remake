@@ -1,0 +1,16 @@
+{
+  "accentColor": "",
+  "enabledCssSnippets": [
+    "dashboard",
+    "neutral-callout",
+    "full-width"
+  ],
+  "theme": "moonstone",
+  "baseFontSize": 17,
+  "translucency": false,
+  "cssTheme": "Minimal",
+  "textFontFamily": "Karmilla,Inter",
+  "interfaceFontFamily": "Karmilla,Inter",
+  "monospaceFontFamily": "Fira Code",
+  "nativeMenus": false
+}

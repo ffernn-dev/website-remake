@@ -1,0 +1,209 @@
+{
+  "main": {
+    "id": "d4ffc513dded8586",
+    "type": "split",
+    "children": [
+      {
+        "id": "45ea348b122e554c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "406189e83cdcf3f8",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "_assets/Pasted image 20241120110538.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20241120110538"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b094b9b939ba2263",
+    "type": "split",
+    "children": [
+      {
+        "id": "955dfb8ecd876f56",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9fe78b987e279f67",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "883a8ba37e6bd579",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "6f64bb0379972265",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 260.5
+  },
+  "right": {
+    "id": "a1359d3370450042",
+    "type": "split",
+    "children": [
+      {
+        "id": "b95f74dba696cf2f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "42db2dc73e604f33",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Personal/Ideas.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Ideas"
+            }
+          },
+          {
+            "id": "6127870559fc0764",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Personal/Ideas.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Ideas"
+            }
+          },
+          {
+            "id": "e63e9cac9598fc90",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "f12ba7ea898c561a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Personal/Ideas.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Ideas"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false
+    }
+  },
+  "active": "406189e83cdcf3f8",
+  "lastOpenFiles": [
+    "I Dunno, It's a Platformer I Guess.md",
+    "_assets/kpBwJs.png",
+    "_assets/DOw8Uc.png",
+    "_assets/idiapig-banner.png",
+    "_assets/4uSUx0.png",
+    "_assets/Pasted image 20241120110538.png",
+    "_assets/Pasted image 20241120112449.png",
+    "_assets/Pasted image 20241120112635.png",
+    "_assets/Pasted image 20241211181116.png",
+    "_assets/unstable-banner.png",
+    "_assets/v7Pw+J.png",
+    "Unstable (adj.).md",
+    "Unnamed Colour Palette Generator.md",
+    "SaveCodr.md",
+    "Procrastination Simulator.md",
+    "Island Song (Cover).md",
+    "Chargd.md",
+    "ffernn.me.md",
+    "Weekary.md",
+    "Bongo Cat 3D.md",
+    "_templates/Project.md",
+    "_templates",
+    "I Dunno, It's a Platformer I Guess (IDIAPIG).md",
+    "Personal/Project Log/Bongo Cat 3D.md",
+    "Personal/Project Log/Chargd.md",
+    "Personal/Project Log/Weekary.md",
+    "Personal/Project Log/Unstable (adj.).md",
+    "Personal/Project Log/Unnamed Colour Palette Generator.md",
+    "Personal/Project Log/SaveCodr.md",
+    "Personal/Project Log/Procrastination Simulator.md",
+    "Personal/Project Log/I Dunno, It's a Platformer I Guess (IDIAPIG).md",
+    "Personal/Project Log/ffernn.me.md",
+    "Personal/Hinterlands/Mods/TO CONSIDER.md",
+    "Year 12/Design Tech/Report research.md",
+    "2024-10-25.md",
+    "Year 12/Design Tech/Report design planning.md",
+    "Personal/ISS tracker/_assets",
+    "Personal/ISS tracker",
+    "Year 12/Maths/Differentiation",
+    "Personal/_assets",
+    "Year 12/Design Tech/Untitled"
+  ]
+}
