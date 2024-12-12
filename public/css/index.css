@@ -1,82 +1,208 @@
 @font-face {
-  font-family: "Karmilla";
   src: url("karmilla/karmilla-regular-webfont.eot");
-  src: url("karmilla/karmilla-regular-webfont.eot?#iefix")
+  src:
+    url("karmilla/karmilla-regular-webfont.eot?#iefix")
       format("embedded-opentype"),
     url("karmilla/karmilla-regular-webfont.woff") format("woff"),
     url("karmilla/karmilla-regular-webfont.ttf") format("truetype"),
     url("karmilla/karmilla-regular-webfont.svg#webfont") format("svg");
+  font-family: "Karmilla";
+}
+
+:root {
+  --body-padding: 2rem;
+  --sidebar-padding: 1rem;
+  --content-padding: 2rem;
+  --foreground: #f7fff7;
+  --foreground-30: rgba(247, 255, 247, 30%);
+  --foreground-75: rgba(247, 255, 247, 75%);
+  --secondary: #ef476f;
+  --content-width: calc(70ch + var(--content-padding));
 }
 
 body {
+  transition: 0.15s ease;
+  box-sizing: border-box;
+  margin: 0;
   background-color: #1c1a1e;
-  color: #f7fff7;
+  height: 100dvh;
+  color: var(--foreground);
   font-family: "Karmilla";
+  font-display: swap;
+}
+h1 {
+  font-size: 200%;
+}
+h2 {
+  font-size: 150%;
+}
+p {
+  line-height: 150%;
 }
 a {
-  color: #f7fff7;
+  position: relative;
+  cursor: pointer;
+  color: var(--foreground);
+  text-decoration: none;
+}
+.link::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.2s ease-in-out;
+  background-color: #38b863;
+  width: 100%;
+  height: 2px;
+  content: "";
+}
+.link:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.inlineurl {
+  color: var(--secondary);
+  white-space: nowrap;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin-bottom: 0.4rem;
+  border-radius: 6px;
+  list-style-position: inside;
+}
+li > ul {
+  padding-left: 2rem;
+}
+.sidebar-page.active > .link::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.sidebar-page > .link {
+  color: var(--foreground);
+}
+.sidebar-page {
+  padding: 0.33rem 0.5rem;
+}
+hr {
+  border: none;
+  background: var(--foreground);
+  height: 2px;
+}
+input[type="text"] {
+  border-radius: 0.6rem;
+  background-color: inherit;
+  padding: 0.5rem;
+  color: inherit;
+}
+input[type="checkbox"] {
+  background-color: transparent;
+  color: transparent;
+}
+input {
+  transition: all ease-in 0.13s;
+  outline: none;
+  /* outline-offset: 0px; */
+  border: 2px solid var(--foreground);
+  background-color: transparent;
+}
+input:focus {
+  background-color: var(--foreground-highlight);
 }
 
 .box {
-  background-color: #221f23;
-  border: 2px solid #f7fff7;
+  display: block;
+  border: 2px solid var(--foreground);
   border-radius: 12px;
+  background-color: #221f23;
+}
+.callout {
+  margin: 0;
+  border-radius: 12px;
+  background-color: rgba(87, 147, 159, 0.3);
+  padding: var(--sidebar-padding);
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.callout-icon {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+.callout-title > p {
+  font-weight: bolder;
+}
+
+#main {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
 
 .sidebar {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: var(--body-padding);
+  padding: var(--sidebar-padding);
+  overflow: auto;
   overscroll-behavior-y: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  position: fixed;
-  /* TODO: CALC USING BODY MARGIN */
-  height: calc(100vh - 16px);
+}
+
+.content-container {
+  flex-grow: 1;
+  box-sizing: border-box;
   overflow: auto;
 }
-
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  padding: 16px;
-  text-decoration: none;
+.content {
+  box-sizing: border-box;
+  margin: var(--body-padding);
+  margin-right: auto;
+  margin-left: auto;
+  padding: var(--content-padding);
+  width: var(--content-width);
 }
 
-/* Active/current link */
-.sidebar a.active {
-  background-color: #04aa6d;
+.banner {
+  width: 100%;
 }
 
-/* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-}
-
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
+/* On screens that are less than 1008px wide, make the sidebar into a topbar */
+@media screen and (max-width: 1008px) {
+  #main {
+    flex-direction: column;
+  }
   .sidebar {
-    width: 100%;
-    height: auto;
     position: relative;
+    margin-inline: auto;
+    margin-bottom: 0;
+    box-shadow: 0 12px 9px 5px rgba(28, 26, 30, 1);
+    width: var(--content-width);
+
+    height: auto;
   }
-  .sidebar a {
-    float: left;
-  }
-  div.content {
-    margin-left: 0;
+  .sidebar li {
+    display: inline;
   }
 }
 
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
+@media screen and (max-width: 762px) {
+  /* TODO: change layout system to allow whole page to be scrolled including top-bar */
+  :root {
+    --body-padding: 1.5rem;
+  }
+  /* TODO: make a common padding variable, turn the --main-padding to like body padding or smt */
+  .content,
+  .sidebar {
+    padding: 0.75rem;
+    width: calc(100% - 2 * var(--body-padding));
+  }
+  .sidebar li {
+    display: list-item;
   }
 }

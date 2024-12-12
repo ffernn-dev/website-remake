@@ -1,0 +1,8 @@
+{% extends "main.njk" %}
+{% block content %}
+    {% if banner %}<img class="banner" src="{{ banner }}">{% endif %}
+    <h1>{{ postTitle }}</h1>
+    {% if date %}<p>Published {{ date }}</p>{% endif %}
+    {% block postContent %}
+    {% endblock %}
+{% endblock %}

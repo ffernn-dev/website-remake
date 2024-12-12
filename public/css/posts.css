@@ -1,0 +1,120 @@
+#search-bar {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin-block: 1.5rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#search-text {
+  padding-right: 2rem !important;
+}
+#search-submit {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+#search-submit svg {
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+#filters {
+  margin-block: 1.5rem;
+}
+.filter-toggle {
+  margin-left: 1rem;
+  list-style: none;
+}
+.collapse-icon {
+  display: block;
+  flex-shrink: 0;
+  margin-right: 0.3rem;
+  width: 16px;
+  height: 16px;
+}
+.filter-separator.active > .collapse-icon.down {
+  display: none;
+}
+.filter-separator:not(.active) > .collapse-icon.up {
+  display: none;
+}
+.filter-separator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  color: var(--foreground-75);
+  list-style: none;
+}
+.filter-separator > hr {
+  margin-left: 0.5rem;
+  background-color: var(--foreground-75);
+  width: 100%;
+}
+.filter-separator > p {
+  margin: 0;
+}
+.bottom-line {
+  align-self: flex-end;
+}
+
+.filter-group {
+  transition: 0.1s ease-in;
+  max-height: 0;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 1009px) {
+  .content {
+    width: calc(100% - var(--body-padding) * 2);
+  }
+}
+
+#posts-list {
+  display: flex;
+  gap: 1rem;
+}
+
+.posts-col {
+  display: flex;
+  flex-grow: 1;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 1230px) {
+  .posts-col--3 {
+    display: none;
+  }
+}
+@media screen and (max-width: 969px) {
+  .posts-col--2,
+  .posts-col--3 {
+    display: none;
+  }
+}
+.post-card {
+  transition: transform 0.05s ease-in-out;
+  overflow: hidden;
+}
+.post-card:hover {
+  transform: scale(1.03);
+}
+.post-card img {
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.card-text {
+  padding: 1rem;
+}
+.card-text h2 {
+  margin: 0;
+}

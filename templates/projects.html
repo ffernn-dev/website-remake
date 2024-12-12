@@ -1,0 +1,19 @@
+{% extends "main.njk" %} {% block stylesheets %}
+<link preload rel="stylesheet" type="text/css" href="/css/posts.css" />
+{% endblock %} {% block sidebarContent %}
+<hr />
+<form id="search-bar">
+  <input type="text" id="search-text" placeholder="Search" />
+  <button type="submit" id="search-submit" aria-label="Submit Search"></button>
+</form>
+<form><div id="filters"></div></form>
+{% endblock %} {% block content %}
+<script src="https://unpkg.com/colcade@0/colcade.js"></script>
+<script src="/js/thumbhash.js"></script>
+<div id="posts-list">
+  <div class="posts-col posts-col--1"></div>
+  <div class="posts-col posts-col--2"></div>
+  <div class="posts-col posts-col--3"></div>
+</div>
+<script src="/js/posts.js"></script>
+{% endblock %}

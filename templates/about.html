@@ -1,0 +1,79 @@
+{% extends "main.njk" %} {% block content %}
+<script>
+  console.log("script exists");
+  function setAge(el) {
+    console.log("TEST");
+    el.innerHTML = (
+      (Date.now() - 1180879200000) /
+      1000 /
+      60 /
+      60 /
+      24 /
+      365.25
+    ).toFixed(4);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const span = document.getElementById("age");
+    setAge(span);
+  });
+</script>
+<h1>About me</h1>
+<p>Getting up close and personal 😳</p>
+<h2>The basics</h2>
+<p>
+  I'm
+  <span id="age"><noscript>17</noscript></span>
+  years old and I was born and live in Australia. I love making things! I do a
+  little bit of everything (go check out my portfolio page next) but here's a
+  vague list of my hobbies:
+</p>
+<ul>
+  <li>
+    Software development, including
+    <ul>
+      <li>Web development</li>
+      <li>Game development</li>
+      <li>Embedded programming</li>
+      <li>Bash scripting to pretend like I'm saving time</li>
+    </ul>
+  </li>
+  <li>
+    I love music production but don't do it very often, although I've recently
+    joined a rock band with some friends so keep an eye out for that maybe??
+  </li>
+  <li>
+    I had a phase of doing heaps of 3D modelling, VFX and architecture renders
+    which I had great fun with, but haven't done in a while.
+  </li>
+  <li>
+    More recently (as of Dec 2024) I've been doing a lot of electronics such as
+    microcontroller/LED strip projects, and a school assignment in which we
+    build a hexapod from a kit and programmed it with inverse kinematics!
+  </li>
+</ul>
+<h2>Pronouns?</h2>
+<p>
+  Quick answer: whatever you want! People often use he/him though as I was born
+  male.
+</p>
+<p>
+  Long answer: I love all pronouns and don't mind which people use for me.
+  Basically just call me whatever you feel like! If you're not sure, he/him is
+  fine. For more information check out my
+  <a href="https://en.pronouns.page/@hihi.fernguy" class="url inlineurl"
+    >pronouns.page</a
+  >.
+</p>
+<h2>Gender Identity</h2>
+<p>
+  I identify as genderfluid, which means my gender isn't fixed. Sometimes I feel
+  more male, sometimes female, sometimes both or neither.
+  <a href="https://www.webmd.com/sex/what-is-fluid" class="url inlineurl"
+    >WebMD has an alright article</a
+  >
+  that explains things a bit better than I can, but then again it's not super
+  complicated and as I said, I don't mind how you see my gender or how you refer
+  to me. After all I'm just some guy :p
+</p>
+{% endblock %}

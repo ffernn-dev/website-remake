@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+
+    <link preload rel="stylesheet" type="text/css" href="/css/index.css" />
+    {% block stylesheets %} {% endblock %}
+
+    <title>{{ title }} // ffernn</title>
+
+    <meta content="{{ title }} // ffernn" property="og:title" />
+    <meta content={{ description }} property="og:description" />
+    <meta content={{ embedImage }} property="og:image" />
+    <meta content={{ url }} property="og:url" />
+    <meta content="#38B863" name="theme-color" />
+    <meta name="twitter:title" content="{{ title }} // ffernn" />
+    <meta name="twitter:site" content="@ffernn" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content={{ description }} />
+    <meta name="twitter:image" content={{ embedImage }} />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+
+    <meta name="application-name" content="ffernn.me" />
+    <meta name="apple-mobile-web-app-title" content="ffernn" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="/icons/icon128_maskable.png" />
+    
+    <script src="/js/index.js">
+
+    <script>
+      /* prevent Firefox FOUC */
+      0
+    </script>
+  </head>
+  <body style="background-color: #1c1a1e">
+    <div id="main">
+      <div class="sidebar box">
+        <ul>
+          <li class="{{ 'active' if (page == 'home') }} sidebar-page"><a class="link" href="/">Home</a></li>
+          <li class="{{ 'active' if (page == 'about') }} sidebar-page"><a class="link" href="/about">About Me</a></li>
+          <li class="{{ 'active' if (page == 'socials') }} sidebar-page"><a class="link" href="/socials">Social Links</a></li>
+          <li class="{{ 'active' if (page == 'projects') }} sidebar-page"><a class="link" href="/projects">Project Portfolio</a></li>
+          <li class="{{ 'active' if (page == 'blog') }} sidebar-page"><a class="link" href="/blog">Blog</a></li>
+        </ul>
+        {% block sidebarContent %}
+        {% endblock %}
+      </div>
+      <div class="content-container">
+        <div class="content box">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
