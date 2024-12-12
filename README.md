@@ -1,14 +1,14 @@
 # Personal website and portfolio PWA
 ## Installation
-Download and enter the repository:
-`git clone https://github.com/ffernn-dev/website-remake`
-`cd website-remake`
-Install dependencies:
-`npm i`
-Ensure the database is up to date:
-`npm run build`
-Run the sever:
-`npm run start`
+Download and enter the repository:  
+`git clone https://github.com/ffernn-dev/website-remake`  
+`cd website-remake`  
+Install dependencies:  
+`npm i`  
+Ensure the database is up to date:  
+`npm run build`  
+Run the sever:  
+`npm run start`  
 ## To add content:
 Create a markdown file in the `markdown` directory (filename will be the title of the page), add "frontmatter" metadata in the following format
 ```
