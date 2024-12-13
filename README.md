@@ -49,4 +49,4 @@ Various places in build.js. The high-level process of build.js is as follows
 3. For each markdown document, strip the metadata from the "frontmatter" section and insert that into the database, add any new tags found to the database too and link them many-to-many with the posts (also ask the user for a category to file them under for the UI), and finally convert the document to HTML, saving it as a post file.
 4. Remove any entries from the database or files from the image folder if the source material has been deleted.
 ### Querying your database to confirm the data is present:
-index.js function selfCheck
+[index.js function selfCheck](https://github.com/ffernn-dev/website-remake/blob/761f66ea824b41a5465a1d28941267165ddd53d5/index.js#L156)
