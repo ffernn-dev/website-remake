@@ -7,7 +7,7 @@ tags:
   - complete
   - gamedev
 banner: "[[idiapig-banner.png]]"
-banner-y: "0"
+bannerAlt: Screenshot from the game, the pink main character and a slime companion are shown.
 ---
 > [!tip] Project url
 > [Play *IDIAPIG* by ffernn on itch.io](https://ffernn.itch.io/idiapig)

@@ -11,12 +11,15 @@
             "id": "406189e83cdcf3f8",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "_assets/Pasted image 20241120110538.png"
+                "file": "Island Song (Cover).md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20241120110538"
+              "icon": "lucide-file",
+              "title": "Island Song (Cover)"
             }
           }
         ]
@@ -162,28 +165,29 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "406189e83cdcf3f8",
+  "active": "9fe78b987e279f67",
   "lastOpenFiles": [
+    "Untitled",
+    "Weekary.md",
+    "Unstable (adj.).md",
+    "Island Song (Cover).md",
+    "Procrastination Simulator.md",
+    "SaveCodr.md",
+    "Unnamed Colour Palette Generator.md",
     "I Dunno, It's a Platformer I Guess.md",
+    "Chargd.md",
+    "Bongo Cat 3D.md",
+    "_assets/Pasted image 20241120110538.png",
     "_assets/kpBwJs.png",
     "_assets/DOw8Uc.png",
     "_assets/idiapig-banner.png",
     "_assets/4uSUx0.png",
-    "_assets/Pasted image 20241120110538.png",
     "_assets/Pasted image 20241120112449.png",
     "_assets/Pasted image 20241120112635.png",
     "_assets/Pasted image 20241211181116.png",
     "_assets/unstable-banner.png",
     "_assets/v7Pw+J.png",
-    "Unstable (adj.).md",
-    "Unnamed Colour Palette Generator.md",
-    "SaveCodr.md",
-    "Procrastination Simulator.md",
-    "Island Song (Cover).md",
-    "Chargd.md",
     "ffernn.me.md",
-    "Weekary.md",
-    "Bongo Cat 3D.md",
     "_templates/Project.md",
     "_templates",
     "I Dunno, It's a Platformer I Guess (IDIAPIG).md",

@@ -9,7 +9,6 @@ tags:
   - javascript
   - webdev
 banner: 
-banner-y: "0"
 ---
 > [!tip] Project url
 > http://ffernn.me/Weekary/

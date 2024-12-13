@@ -7,7 +7,7 @@ tags:
   - complete
   - gamedev
 banner: "[[unstable-banner.png]]"
-banner-y: "100"
+bannerAlt: screenshot from the game, a pile of various letters on the ground and a few falling from the sky, the word "unstable" can be vaguely made out
 ---
 > [!tip] Project url
 > [Play *Unstable (adj.)* by ffernn on itch.io](https://ffernn.itch.io/unstable-adj)

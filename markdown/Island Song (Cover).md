@@ -6,7 +6,7 @@ tags:
   - collaboration
   - complete
 banner: "[[Pasted image 20241211181116.png]]"
-banner-y:
+bannerAlt: Digital artwork of the willow tree from Adventure Time, sunset in the background
 ---
 > [!tip] Project url
 > [Listen to *Island Song* by aaaaaa on itch.io](https://www.youtube.com/watch?v=MHno-3wnqrY)

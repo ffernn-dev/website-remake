@@ -6,7 +6,6 @@ tags:
   - stalled
   - webdev
 banner: 
-banner-y: "0"
 ---
 ![[Pasted image 20241120112449.png]]
 **UI concept sketch**

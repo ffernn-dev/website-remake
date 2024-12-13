@@ -1,6 +1,7 @@
 {% extends "main.njk" %}
 {% block content %}
-    {% if banner %}<img class="banner" src="{{ banner }}">{% endif %}
+    <a href="/projects" class="url inlineurl" onclick="history.back()">← Back to all projects</a>
+    {% if banner %}<img class="banner" src="{{ banner }}" alt="{{ bannerAlt }}">{% endif %}
     <h1>{{ postTitle }}</h1>
     {% if date %}<p>Published {{ date }}</p>{% endif %}
     {% block postContent %}

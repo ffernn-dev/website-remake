@@ -9,7 +9,7 @@ tags:
   - collaboration
   - gamedev
 banner: "[[v7Pw+J.png]]"
-banner-y: "60"
+bannerAlt: A promotional image showing the main character holding a pen with homework and clocks in the background, title text saying "procrastination simulator"
 ---
 > [!tip] Project url
 > [Play *Procrastionation Simulator* by ffernn on itch.io](https://ffernn.itch.io/procrastination-simulator)

@@ -57,12 +57,12 @@ const createSearchUI = async () => {
       categories.push(tag.category);
       const newSeparator = document.createElement("div");
       const separator = `
-      <div class="filter-separator">
+      <button type="button" class="filter-separator">
         <svg class="collapse-icon up">${caretUp}</svg>
         <svg class="collapse-icon down">${caretDown}</svg>
         <p>${tag.category}</p>
         <hr class="bottom-line">
-      </div>
+      </button>
       <ul id="filter-group-${tag.category}" class="filter-group">
       </ul>
       `;
@@ -110,20 +110,22 @@ function lazyLoadImage(target, imageUrl) {
 const loadPosts = async () => {
   const response = await fetch(`/api/projects${window.location.search}`);
   const posts = await response.json();
-
+  
   currentPosts.forEach((card) => {
     masonry.remove(card);
   });
   posts.forEach((post) => {
+    const tagNames = post.tagNames
     const newCard = document.createElement("a");
     const image = post.thumbhash ? thumbHashToDataURL(post.thumbhash.data) : "";
 
     // Create the card by filling in the data from the server
+    // TODO: Include a "description field"
     const card = `
-    ${image ? "<img src=" + image + "></img>" : ""}
+    ${image ? "<img src='" + image + "'></img>" : ""}
     <section class="card-text">
       <h2>${post.title}</h2>
-      <p>${post.name}</p>
+      <p>🏷️ ${tagNames}</p>
     </section>
     `;
     newCard.classList.add("box", "post-card");
@@ -135,6 +137,7 @@ const loadPosts = async () => {
     if (image) {
       // Queue the loading of the image to replace the blur placeholder
       cardImage = newCard.querySelector("img");
+      cardImage.alt = post.banner_alt
       lazyLoadImage(cardImage, `/images/${post.banner_image}.png`);
     }
   });

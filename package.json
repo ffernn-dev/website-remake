@@ -12,6 +12,7 @@
   "author": "ffernn",
   "license": "MIT",
   "dependencies": {
+    "@portaljs/remark-wiki-link": "^1.2.0",
     "better-sqlite3": "^11.5.0",
     "body-parser": "^1.20.3",
     "csv-writer": "^1.6.0",

@@ -104,7 +104,6 @@ input[type="checkbox"] {
 }
 input {
   transition: all ease-in 0.13s;
-  outline: none;
   /* outline-offset: 0px; */
   border: 2px solid var(--foreground);
   background-color: transparent;
@@ -176,6 +175,11 @@ input:focus {
 @media screen and (max-width: 1008px) {
   #main {
     flex-direction: column;
+    overflow: scroll;
+    height: unset;
+  }
+  .content-container {
+    height: unset;
   }
   .sidebar {
     position: relative;
@@ -183,8 +187,7 @@ input:focus {
     margin-bottom: 0;
     box-shadow: 0 12px 9px 5px rgba(28, 26, 30, 1);
     width: var(--content-width);
-
-    height: auto;
+    height: auto
   }
   .sidebar li {
     display: inline;
@@ -192,11 +195,9 @@ input:focus {
 }
 
 @media screen and (max-width: 762px) {
-  /* TODO: change layout system to allow whole page to be scrolled including top-bar */
   :root {
     --body-padding: 1.5rem;
   }
-  /* TODO: make a common padding variable, turn the --main-padding to like body padding or smt */
   .content,
   .sidebar {
     padding: 0.75rem;

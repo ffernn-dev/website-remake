@@ -71,6 +71,7 @@ async function processMarkdownFile(file) {
     title: filename,
     created: document.metadata.created.toISOString().slice(0, 10),
     banner: document.metadata.banner?.match(/\[\[(.*?)\.\w+\]\]/)?.[1],
+    bannerAlt: document.metadata.bannerAlt,
     tags: document.metadata.tags,
     contentHash,
     lastModified,
@@ -155,19 +156,20 @@ async function createTag(name) {
 }
 
 function upsertPost(post) {
-  const { name, title, created, banner, tags, contentHash, lastModified } =
+  const { name, title, created, banner, bannerAlt, tags, contentHash, lastModified } =
     post;
 
   db.transaction(() => {
     // Upsert post
     db.prepare(
       `
-      INSERT INTO posts (name, title, created, banner_image, content_hash, last_modified)
-      VALUES (@name, @title, @created, @banner, @hash, @modified)
+      INSERT INTO posts (name, title, created, banner_image, banner_alt, content_hash, last_modified)
+      VALUES (@name, @title, @created, @banner, @banner_alt, @hash, @modified)
       ON CONFLICT(name) DO UPDATE SET
         title = @title,
         created = @created,
         banner_image = @banner,
+        banner_alt = @banner_alt,
         content_hash = @hash,
         last_modified = @modified
     `,
@@ -176,6 +178,7 @@ function upsertPost(post) {
       title,
       created,
       banner,
+      banner_alt: bannerAlt,
       hash: contentHash,
       modified: lastModified,
     });

@@ -9,7 +9,6 @@ tags:
   - graphic-design
   - webdev
 banner: 
-banner-y: "0"
 ---
 > [!tip] Project url
 > https://ffernn.me/Colours

@@ -7,6 +7,7 @@ const __dirname = import.meta.dirname;
 const app = express();
 const db = new Database(path.join(__dirname, "database", "data.db"));
 app.use(express.static(path.join(__dirname, "public"), { index: false }));
+selfCheck()
 
 nunjucks.configure("templates", {
   autoescape: false,
@@ -25,7 +26,7 @@ app.get("/about", function (req, res) {
   res.render("about.html", { page: "about", title: "About Me" });
 });
 app.get("/socials", function (req, res) {
-  res.render("main.njk", { page: "socials", title: "Social Links" });
+  res.render("construction.html", { page: "socials", title: "Social Links" });
 });
 app.get("/projects", function (req, res) {
   res.render("projects.html", {
@@ -48,6 +49,7 @@ app.get("/api/projects", function (req, res) {
         `SELECT 
         posts.*, 
         GROUP_CONCAT(tags.tag_id, ',') AS tags,
+        GROUP_CONCAT(tags.name, ', ') AS tagNames,
         assets.thumbhash AS thumbhash
       FROM 
         posts
@@ -132,11 +134,13 @@ app.get("/post/:post", function (req, res) {
   const banner = postData.banner_image
     ? `/images/${postData.banner_image}.png`
     : null;
+  const bannerAlt = postData.banner_alt
   // TODO: format date
 
   res.render(postFile, {
     page: "",
     banner: banner,
+    bannerAlt: bannerAlt,
     embedImage: banner,
     date: postData.created,
     postTitle: postData.title,
@@ -145,6 +149,14 @@ app.get("/post/:post", function (req, res) {
 });
 app.listen(8080, () =>
   console.log(
-    "Server is running on Port 5000, visit http://localhost:8080/ or http://127.0.0.1:8080 to access your website",
+    "Server is running on Port 8080, visit http://localhost:8080/ or http://127.0.0.1:8080 to access your website",
   ),
 );
+
+function selfCheck() {
+  const numPosts = db.prepare("SELECT COUNT(1) FROM posts;").pluck().get();
+  const numTags = db.prepare("SELECT COUNT(1) FROM tags;").pluck().get();
+  const numAssets = db.prepare("SELECT COUNT(1) FROM assets;").pluck().get();
+
+  console.log(`Loaded ${numPosts} posts containing ${numTags} unique tags, and ${numAssets} assets from the database`)
+}

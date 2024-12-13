@@ -8,7 +8,7 @@ tags:
   - complete
   - gamedev
 banner: "[[DOw8Uc.png]]"
-banner-y: "25"
+bannerAlt: A 3D cartoon cat playing bongo drums, pink sky background
 ---
 > [!tip] Project url
 > [Play *Bongo Cat 3D* by ffernn on itch.io](https://ffernn.itch.io/bongo-cat-3d)
