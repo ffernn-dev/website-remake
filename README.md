@@ -30,15 +30,16 @@ Build your new content
 Querying posts based on tags and search string  
 https://github.com/ffernn-dev/website-remake/blob/17ded9fa9e0f4e3380f2dfdb9fdc995792b0c305/index.js#L43
 Sending list of tags  
-https://github.com/ffernn-dev/website-remake/blob/17ded9fa9e0f4e3380f2dfdb9fdc995792b0c305/index.js#L120C1-L120C20
+https://github.com/ffernn-dev/website-remake/blob/17ded9fa9e0f4e3380f2dfdb9fdc995792b0c305/index.js#L120
 ### HTML and CSS for the frontend
 HTML:
-https://github.com/ffernn-dev/website-remake/tree/50d88bf0a7a41cfd03a10023dfbc66c116ffee16/templates
-- `main.njk` is the base template for the site, containing a sidebar and content container to be populated with whatever the page is
-- `post.njk` inherits from main.njk and adds some supporting material for the content of a "project page" to be inserted into
-- `projects.html`, the projects page, inherits from main.njk and contains UI and scripts for sending queries to the backend and displaying the results
-- `home.html, about.html, construction.html` are all static pages, pretty self explanatory
-- `posts/xyz.html` are the generated project pages that inherit from `post.njk` and contain the post content.
+https://github.com/ffernn-dev/website-remake/tree/50d88bf0a7a41cfd03a10023dfbc66c116ffee16/templates  
+- `main.njk` is the base template for the site, containing a sidebar and content container to be populated with whatever the page is  
+- `post.njk` inherits from main.njk and adds some supporting material for the content of a "project page" to be inserted into  
+- `projects.html`, the projects page, inherits from main.njk and contains UI and scripts for sending queries to the backend and displaying the results  
+- `home.html, about.html, construction.html` are all static pages, pretty self explanatory  
+- `posts/xyz.html` are the generated project pages that inherit from `post.njk` and contain the post content.  
+
 CSS:
 https://github.com/ffernn-dev/website-remake/tree/50d88bf0a7a41cfd03a10023dfbc66c116ffee16/public/css
 ### Inserting data into the database  
