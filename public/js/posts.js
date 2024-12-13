@@ -154,17 +154,21 @@ window.addEventListener("popstate", function () {
   // Load posts when the user navigates back/forward
   loadPosts();
 });
+function runSearch(event) {
+  event.preventDefault();
+  const searchText = document.getElementById("search-text").value;
+
+  const url = new URL(window.location);
+  url.searchParams.set("q", searchText);
+  history.pushState(null, "", tidyURL(url));
+  loadPosts();
+}
 document
   .getElementById("search-bar")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    const searchText = document.getElementById("search-text").value;
-
-    const url = new URL(window.location);
-    url.searchParams.set("q", searchText);
-    history.pushState(null, "", tidyURL(url));
-    loadPosts();
-  });
+  .addEventListener("submit", runSearch);
+document
+  .getElementById("search-bar")
+  .addEventListener("focusout", runSearch);
 
 function applyFilters() {
   const filters = document.getElementsByClassName("filter-checkbox");
