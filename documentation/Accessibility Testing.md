@@ -14,6 +14,6 @@ Finally, on the last day I added headers above the various parts of the sidebar 
 Some other considerations made during the design stages:
 - Using a high contrast text/background colour combination
 - Adding icons on the filter dropdowns to show that they can be dropped down, and indicate their current state
-- Using relative font sizes in all my css, rather than pixel values 
+- Using relative font sizes in all my css, rather than pixel values to respect the user's browser or system font size preferences
 
 Unfortunately I was unable to use online accessibility checkers, due to them requiring the site be accessible on the public web.
